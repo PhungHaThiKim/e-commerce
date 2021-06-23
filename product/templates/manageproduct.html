@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>BoEC Employee Manage Products</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'employee/plugins/images/favicon.png' %}">
+    <!-- Custom CSS -->
+    <link href="{% static 'employee/plugins/bower_components/chartist/dist/chartist.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'employee/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css' %}">
+    <!-- Custom CSS -->
+    <link href="{% static 'employee/css/style.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="">
+                        <!-- Logo icon -->
+<!--                        <b class="logo-icon">-->
+<!--                            &lt;!&ndash; Dark Logo icon &ndash;&gt;-->
+<!--                            <img src="{% static 'employee/plugins/images/logo-icon.png' %}" alt="homepage" />-->
+<!--                        </b>-->
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="{% static 'img/logoo.png' %}" alt="homepage" />
+                        </span>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+                        href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class=" in">
+                            <form role="search" class="app-search d-none d-md-block me-3">
+                                <input type="text" placeholder="Search..." class="form-control mt-0">
+                                <a href="" class="active">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </form>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li>
+                            <a class="profile-pic" href="#">
+                                <img src="{% static 'employee/plugins/images/users/varun.jpg' %}" alt="user-img" width="36"
+                                    class="img-circle"><span class="text-white font-medium">Phung Ha</span></a>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/user/employee"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/order/manageorder"
+                                aria-expanded="false">
+                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                <span class="hide-menu">Manage Orders</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/product/manageproduct"
+                                aria-expanded="false">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span class="hide-menu">Manage Products</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/feedback/managefeedback"
+                                aria-expanded="false">
+                                <i class="fa fa-smile" aria-hidden="true"></i>
+                                <span class="hide-menu">Manage Feedback</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                        <li class="sidebar-item">
+                            <button style="width:100%; border:none!important;webkit-box-shadow:none!important; box-shadow: none!important;" class="btn sidebar-link waves-effect waves-dark sidebar-link" type="button" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-font" aria-hidden="true"></i>
+                                <span class="hide-menu">Manage Documents</span>
+                                <i class="fa fa-angle-right" style="float:right;padding-left: 25%;" aria-hidden="true" ></i>
+
+                            </button>
+                            <ul style="padding-left: 25%;border:none!important;webkit-box-shadow:none!important; box-shadow: none!important; " class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="/order/managepayment">Payments</a></li>
+                                <li><a class="dropdown-item" href="/order/manageshipment">Shipments</a></li>
+                                <li><a class="dropdown-item" href="/product/managecategory">Categories</a></li>
+                              </ul>
+                        </li>
+
+
+                    </ul>
+
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+
+<!--        ====================================BODY==============================================================-->
+        {% if addmodel is not None %}
+  <div class="modal fade in" id="addmodel" role="dialog">
+    <div class="modal-dialog  modal-lg">
+      <div class="modal-content">
+        <div class="modal-header modal-head">
+            <h2 class="text-center" style="color: white">Add products</h2>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="/product/addProduct/" style="padding: 5%">
+                {% csrf_token %}
+                <div class="row form-group">
+                    <div class="col">
+                        <label>Category</label>
+                        <select name="category_id" class="form-control">
+                            {% for ca in categorys %}
+                            <option value="{{ ca.id }}">{{ ca.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label>Supplier</label>
+                        <select name="supplier_id" class="form-control">
+                            {% for su in suppliers %}
+                            <option value="{{ su.id }}">{{ su.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input name="product_name" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input name="product_image" type="text" class="form-control">
+                </div>
+
+                <div class="row form-group">
+                    <div class="col">
+                        <label>Price</label>
+                        <input name="product_price" type="number" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>OutPrice</label>
+                        <input name="item_outprice" type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input name="product_quantity" type="number" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="product_des" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="d-flex mb-5 align-items-center">
+                    <button type="submit" name="add" class="btn btn-success">Add</button>
+                    <button type="cancel" name="add" class="btn btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Manage Products</h4>
+                    </div>
+                </div>
+            </div>
+           <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <a style="margin-bottom: 2%" class="btn btn-success" href="/product/manageproduct?add=true" >Add product</a>
+
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Image</th>
+                                            <th class="border-top-0 ">Name</th>
+                                            <th class="border-top-0">Price</th>
+                                            <th class="border-top-0">OutPrice</th>
+                                            <th class="border-top-0">Quantity</th>
+                                            <th class="border-top-0">Description</th>
+                                            <th class="border-top-0">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in items %}
+                                        <tr class="col-12">
+                                            <td style="with:5%">{{ forloop.counter }}</td>
+                                            <td style="width: 10%"><img style="width:65%" src="{{ i.productid.img }}" /></td>
+                                            <td style="with:10%">{{ i.productid.name }}</td>
+                                            <td style="with:5%">{{ i.productid.price }}</td>
+                                            <td style="with:5%">{{ i.outprice }}</td>
+                                            <td style="with:5%">{{ i.productid.quantity }}</td>
+                                            <td style="with:30%">{{ i.productid.desc }}</td>
+                                            <td>
+                                                <a class="btn btn-danger" href="deleteProduct/{{ i.id }}" >Delete</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center"> 2021 © Ha Thi Kim Phung <a
+                    href="https://www.facebook.com/htkphung99/">facebook</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+
+    <script src="{% static 'employee/plugins/bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'employee/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'employee/js/app-style-switcher.js' %}"></script>
+    <script src="{% static 'employee/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'employee/js/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'employee/js/sidebarmenu.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'employee/js/custom.js' %}"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="{% static 'employee/plugins/bower_components/chartist/dist/chartist.min.js' %}"></script>
+    <script src="{% static 'employee/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js' %}"></script>
+    <script src="{% static 'employee/js/pages/dashboards/dashboard1.js' %}"></script>
+
+
+    {% if order is not None %}
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#myModal').modal('show');
+        });
+    </script>
+    {% endif %}
+
+    {% if addmodel is not None %}
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#addmodel').modal('show');
+        });
+    </script>
+    {% endif %}
+
+
+    <script language = "text/Javascript">
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+{% include "header.html" %}
+{% load static %}
+{% load mathfilters %}
+
+    <div class="single-product-area">
+            <h2 style="text-align: center; color: #5a88ca; font-weight:800;">SHOPPING CART</h2>
+            <br>
+
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="product-content-right">-->
+<!--                        <div class="woocommerce">-->
+<!--                            <form method="post" action="/cart/docartitem">-->
+<!--                                {% csrf_token %}-->
+<!--                                <table cellspacing="0" class="shop_table cart">-->
+<!--                                    <thead>-->
+<!--                                        <tr>-->
+<!--                                            <th class="product-remove">&nbsp;</th>-->
+<!--                                            <th class="product-thumbnail">&nbsp;</th>-->
+<!--                                            <th class="product-name">Product</th>-->
+<!--                                            <th class="product-price">Price</th>-->
+<!--                                            <th class="product-quantity">Quantity</th>-->
+<!--                                            <th class="product-subtotal">Total</th>-->
+<!--                                        </tr>-->
+<!--                                    </thead>-->
+
+<!--                                    <tbody>-->
+
+
+<!--                                        {% for cartitem in cartitems %}-->
+<!--                                        <tr class="cart_item">-->
+
+<!--                                            <td class="product-remove">-->
+<!--                                                <input type="number" name="cartitemid" value="{{ cartitem.id }}" hidden/>-->
+<!--                                                <a title="Remove this item" class="remove" href="/cart/deletecartget?cartitem={{ cartitem.id }}">×</a>-->
+<!--                                            </td>-->
+
+<!--                                            <td class="product-thumbnail">-->
+<!--                                                <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{ cartitem.itemid.productid.img }}"></a>-->
+<!--                                            </td>-->
+
+<!--                                            <td class="product-name">-->
+<!--                                                <a href="single-product.html">{{ cartitem.itemid.productid.name }}</a>-->
+<!--                                            </td>-->
+
+<!--                                            <td class="product-price">-->
+<!--                                                <span class="amount">${{ cartitem.cost }}</span>-->
+<!--                                            </td>-->
+
+<!--                                            <td class="product-quantity">-->
+<!--                                                <div class="quantity buttons_added">-->
+<!--                                                    <input type="button" class="minus" value="-">-->
+<!--                                                    <input type="number" style="color: black;" size="4" class="input-text qty text" name="quantity" title="Qty" value="{{ cartitem.quantity }}" min="0" step="1">-->
+<!--                                                    <input type="button" class="plus" value="+">-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+
+<!--                                            <td class="product-subtotal">-->
+<!--                                                <span class="amount">${{ cartitem.cost|mul:cartitem.quantity }}</span>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        {% endfor %}-->
+<!--                                        <tr>-->
+<!--                                            <td class="actions" colspan="6">-->
+<!--                                                <input type="submit" value="Update Cart" name="update_cart" class="button">-->
+<!--                                                <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                            </form>-->
+<!--                            <div class="cart-collaterals">-->
+
+<!--                            <div class="cart_totals ">-->
+<!--                                <h2>Cart Totals</h2>-->
+
+<!--                                <table cellspacing="0">-->
+<!--                                    <tbody>-->
+<!--                                        <tr class="order-total">-->
+<!--                                            <th>Order Total</th>-->
+<!--                                            <td><strong><span class="amount">{{ total }}</span></strong> </td>-->
+<!--                                        </tr>-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                            </div>-->
+
+
+<!--                            </div>-->
+<!--                        </div>                        -->
+<!--                    </div>                    -->
+<!--                </div>-->
+<!--            </div>-->
+            <form method="post" action="/cart/docartitem">
+                                {% csrf_token %}
+                <div class="row">
+                    <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Image</th>
+                                            <th class="border-top-0 ">Name</th>
+                                            <th class="border-top-0">Price</th>
+                                            <th class="border-top-0">Quantity</th>
+                                            <th class="border-top-0">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     {% for cartitem in cartitems %}
+                                     <tr class="cart_item">
+
+                                            <td class="product-remove">
+                                                <input type="number" name="cartitemid" value="{{ cartitem.id }}" hidden/>
+                                                <a title="Remove this item" class="remove" href="/cart/deletecartget?cartitem={{ cartitem.id }}"><span style="font-size: 150%">X</span></a>
+                                            </td>
+
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{ cartitem.itemid.productid.img }}"></a>
+                                            </td>
+
+                                            <td class="product-name">
+                                                <a style="color: black!important" href="/product/detail/{{ item.id }}">{{ cartitem.itemid.productid.name }}</a>
+                                            </td>
+
+                                            <td class="product-price">
+                                                <span class="amount">${{ cartitem.cost }}</span>
+                                            </td>
+
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    <input type="number" class="active" style="color: black;" size="4" class="input-text qty text" name="quantity" title="Qty" value="{{ cartitem.quantity }}" min="0" step="1">
+                                                </div>
+                                            </td>
+
+                                            <td class="product-subtotal">
+                                                <span class="amount">${{ cartitem.cost|mul:cartitem.quantity }}</span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                     <tr class="order-total">
+                                         <th style="color: red; font-size: 120%">Order Total</th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td style="color: red; font-size: 120%"><strong><span class="amount">{{ total }} đ</span></strong> </td>
+                                     </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+
+                </div>
+                <div class="row text-center">
+                    <td class="actions" colspan="6">
+                        <input type="submit" value="UpdateCart" name="update_cart" class="button">
+                        <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+                    </td>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% include "footer.html" %}

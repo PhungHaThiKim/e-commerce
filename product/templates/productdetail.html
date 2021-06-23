@@ -1,0 +1,167 @@
+{% load static %}
+{% load index %}
+{% include "header.html" %}
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-content-right">
+                        <div class="product-breadcroumb">
+                            <a href="">Home</a>
+                            <a href="">{{ category }}</a>
+                            <a href="">{{ product.name }}</a>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="product-images">
+                                    <div class="product-main-img">
+                                        <img src="{{ product.img }}" alt="">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="product-inner">
+                                    <h2 class="product-name">{{ product.name }}</h2>
+                                    <div class="product-wid-rating">
+                                        {% for i in 5|times %}
+                                        {% if i|add:1 <= rate %}
+                                        <i class="fa fa-star"></i>
+                                        {% else %}
+                                        <i class="fa fa-star" style="color: lightgray;"></i>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="product-inner-price">
+                                        Price: <ins style="font-family:'Arial',sans-serif">{{ product.price }} đ</ins> <del style="font-size: xx-large;">{{ item.outprice }}</del>
+                                    </div>
+                                    <form method="post" action="/cart/docartitem" class="cart">
+                                        {% csrf_token %}
+                                        <input name="item" value="{{ item.id }}" hidden/>
+                                        <div class="quantity">
+                                            <input type="number" style="color: black" size="4" class="active" title="Qty" value="1" name="quantity" min="0" step="1">
+                                        </div>
+                                        <button type="submit" name="proceed" value="Detail">Add to cart</button>
+                                    </form>
+
+
+                                    <div class="product-inner-category">
+                                        <p>Quantity: {{ product.quantity }} products </p>
+                                    </div>
+
+                                    <div class="product-inner-category">
+                                        <p>Supplier: {{ product.supplierid.name }}  </p>
+                                    </div>
+
+                                    <div role="tabpanel">
+                                        <ul class="product-tab" role="tablist">
+                                                <li role="presentation"><a href="#home" aria-controls="desc" role="tab" data-toggle="tab">Description</a></li>
+
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="desc">
+                                                <h2>Product Description</h2>
+                                                <p>{{ product.desc }}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="latest-product">
+                                    <h2 class="section-title">Suggest Products</h2>
+                                    <div class="product-carousel">
+                                        {% for sgitem in items %}
+                                        <div class="single-product">
+                                            <div class="product-f-image">
+                                                <img style="width:580px; height:300px;" src="{{ sgitem.productid.img }}" alt="">
+                                                <div class="product-hover">
+                                                    <a href="/cart/addtocartget?item={{ sgitem.id }}&before={{ item.id }}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                    <a href="/product/detail/{{ sgitem.id }}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                </div>
+                                            </div>
+
+                                            <h2><a href="single-product.html">{{ sgitem.productid.name }}</a></h2>
+
+                                            <div class="product-carousel-price">
+                                                <ins style="font-family:'Arial',sans-serif">đ{{ sgitem.outprice }}</ins> <del style="font-family:'Arial',sans-serif">đ{{ sgitem.productid.price }}</del>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!--                     ADD   Comment-->
+                        <div class="col-md-12">
+                            <div class="product-body">
+                                <div class="comment">
+                                    <div class="product-tab">
+                                        <ul class="tab-nav">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="user-comment">
+                                    <form action="/product/addcomment/" class="submit-comment" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="itemIDcomment" value="{{item.id}}">
+                                        <textarea cols="50" rows="4" name="content" placeholder="Nhập bình luận về sản phẩm"></textarea>
+                                        <button type="submit" name="add" class="btn btn-success">Add</button>
+                                    </form>
+
+                                </div>
+
+
+                            </div>
+                        </div> <!--comment-->
+
+
+                            <!--View Comment -->
+                        <div role="tabpanel">
+                                        <ul class="product-tab" role="tablist">
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Comments</a></li>
+                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Feedback</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                {% for comment in comments %}
+                                                    <div class="comment mt-4 text-justify float-left">
+                                                        <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                                        <h4>{{ comment.userid.fullname_set.all.0.first }} {{ comment.userid.fullname_set.all.0.last }}</h4> <span>- {{ comment.time }}</span> <br>
+                                                        <p style="color: black">{{ comment.content }}</p>
+                                                    </div>
+                                                {%endfor %}
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                {% for ci in item.cartitem_set.all %}
+                                                {% for fb in ci.feedback_set.all %}
+                                                    <div class="comment mt-4 text-justify float-left">
+                                                        <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                                        <h4>{{ fb.customeruserid.userid.fullname_set.all.0.first }} {{ fb.customeruserid.userid.fullname_set.all.0.last }}</h4> {{ fb.star }} ★ <span> - {{ fb.time }}</span> <br>
+                                                        <p style="color: black">{{ fb.content }}</p>
+                                                    </div>
+                                                {%endfor %}
+                                                {%endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% include "footer.html" %}

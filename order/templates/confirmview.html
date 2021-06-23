@@ -1,0 +1,144 @@
+{% include "header.html" %}
+{% load static %}
+{% load mathfilters %}
+        {% if order is not None %}
+        <div class="modal fade in" id="myModal" role="dialog">
+            <div class="modal-dialog  modal-sm  modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body">
+                    <p>Bạn đã đặt hàng thành công: ORDER-00{{ order.id }}</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="/product" class="btn btn-primary">Ok</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        {% endif %}
+    <div class="single-product-area">
+            <h2 style="text-align: center; color: #5a88ca; font-weight:800;">CONFIRM</h2>
+            <br>
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            <span class="text-sm text-grey-m2 align-middle">Fullname: </span>
+                            <span class="text-600 text-110 text-blue align-middle"> {{ fullname }} </span>
+                        </div>
+                        <div>
+                            <span class="text-sm text-grey-m2 align-middle">Address: </span>
+                            <span class="text-600 text-110 text-blue align-middle">{{ homenumber }} {{ street }}, {{ district }}, {{ city }}, {{ country }}</span>
+                        </div>
+                        <div>
+                            <span class="text-sm text-grey-m2 align-middle">Phone: </span>
+                            <span class="text-600 text-110 text-blue align-middle"> {{ phone }}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="text-sm text-grey-m2 align-middle">Payment: </span>
+                        <span class="text-600 text-110 text-blue align-middle"> {{ payment.type }} </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Image</th>
+                                            <th class="border-top-0 ">Name</th>
+                                            <th class="border-top-0">Price</th>
+                                            <th class="border-top-0">Quantity</th>
+                                            <th class="border-top-0">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     {% for cartitem in cartitems %}
+                                     <tr class="cart_item">
+
+                                            <td class="product-remove">
+                                                {{ forloop.counter }}
+                                            </td>
+
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{ cartitem.itemid.productid.img }}"></a>
+                                            </td>
+
+                                            <td class="product-name">
+                                                <a style="color: black!important" href="/product/detail/{{ item.id }}">{{ cartitem.itemid.productid.name }}</a>
+                                            </td>
+
+                                            <td class="product-price">
+                                                <span class="amount">${{ cartitem.cost }}</span>
+                                            </td>
+
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    {{ cartitem.quantity }}
+                                                </div>
+                                            </td>
+
+                                            <td class="product-subtotal">
+                                                <span class="amount">${{ cartitem.cost|mul:cartitem.quantity }}</span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                     <tr class="order-total">
+                                         <th style="color: red; font-size: 120%">Shipment</th>
+                                         <td><b>{{ shipment.type }}</b></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td>Fee:</td>
+                                         <td style="color: red; font-size: 120%"><strong><span class="amount">{{ shipment.price }} đ</span></strong> </td>
+                                     </tr>
+                                     <tr class="order-total">
+                                         <th style="color: red; font-size: 120%">Order Total</th>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td style="color: red; font-size: 120%"><strong><span class="amount">{{ shipment.price|add:total }} đ</span></strong> </td>
+                                     </tr>
+                                    <tr class="order-total">
+                                         <th style="color: red; font-size: 120%">Discount</th>
+                                         <td>{{ "100"|mul:payment.discountrate }} %</td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td style="color: red; font-size: 120%"><strong><span class="amount">{{ shipment.price|add:total|mul:payment.discountrate }} đ</span></strong> </td>
+                                     </tr>
+                                    <tr class="order-total">
+                                         <th style="color: red; font-size: 120%">Total</th>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                        {% with stotal=shipment.price|add:total discount=shipment.price|add:total|mul:payment.discountrate %}
+                                         <td style="color: red; font-size: 120%"><strong><span class="amount">{{ stotal|sub:discount }} đ</span></strong> </td>
+                                        {% endwith %}
+                                     </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+
+                </div>
+
+                <div class="row text-center">
+                    <div class="actions" >
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <input name="cartid" value="{{ cart.id }}" hidden>
+                            <input name="userid" value="{{ user.id }}" hidden>
+                            {% if order is None %}
+                            <button type="submit" value="confirm" name="proceed" class="checkout-button button alt wc-forward">ORDER</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+
+
+        </div>
+    </div>
+
+{% include "footer.html" %}

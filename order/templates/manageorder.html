@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    {% load static %}
+    {% load mathfilters %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>BoEC Employee Manage</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'employee/plugins/images/favicon.png' %}">
+    <!-- Custom CSS -->
+    <link href="{% static 'employee/plugins/bower_components/chartist/dist/chartist.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'employee/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css' %}">
+    <!-- Custom CSS -->
+    <link href="{% static 'employee/css/style.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="">
+                        <!-- Logo icon -->
+<!--                        <b class="logo-icon">-->
+<!--                            &lt;!&ndash; Dark Logo icon &ndash;&gt;-->
+<!--                            <img src="{% static 'employee/plugins/images/logo-icon.png' %}" alt="homepage" />-->
+<!--                        </b>-->
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="{% static 'img/logoo.png' %}" alt="homepage" />
+                        </span>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+                        href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class=" in">
+                            <form role="search" class="app-search d-none d-md-block me-3">
+                                <input type="text" placeholder="Search..." class="form-control mt-0">
+                                <a href="" class="active">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </form>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li>
+                            <a class="profile-pic" href="#">
+                                <img src="{% static 'employee/plugins/images/users/varun.jpg' %}" alt="user-img" width="36"
+                                    class="img-circle"><span class="text-white font-medium">Phung Ha</span></a>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/user/employee"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/order/manageorder"
+                                aria-expanded="false">
+                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                <span class="hide-menu">Manage Orders</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/product/manageproduct"
+                                aria-expanded="false">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span class="hide-menu">Manage Products</span>
+                            </a>
+                        </li>
+<!--                        <li class="sidebar-item">-->
+<!--                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fontawesome.html"-->
+<!--                                aria-expanded="false">-->
+<!--                                <i class="fa fa-font" aria-hidden="true"></i>-->
+<!--                                <span class="hide-menu">Manage Categories</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/feedback/managefeedback"
+                                aria-expanded="false">
+                                <i class="fa fa-smile" aria-hidden="true"></i>
+                                <span class="hide-menu">Manage Feedback</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                        <li class="sidebar-item">
+                            <button style="width:100%; border:none!important;webkit-box-shadow:none!important; box-shadow: none!important;" class="btn sidebar-link waves-effect waves-dark sidebar-link" type="button" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-font" aria-hidden="true"></i>
+                                <span class="hide-menu">Manage Categories</span>
+                                <i class="fa fa-angle-right" style="float:right;padding-left: 25%;" aria-hidden="true" ></i>
+
+                            </button>
+                            <ul style="padding-left: 25%;border:none!important;webkit-box-shadow:none!important; box-shadow: none!important; " class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="/order/managepayment">Payments</a></li>
+                                <li><a class="dropdown-item" href="/order/manageshipment">Shipments</a></li>
+                                <li><a class="dropdown-item" href="/product/managecategory">Category Products</a></li>
+                              </ul>
+                        </li>
+
+
+                    </ul>
+
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+
+<!--        ====================================BODY==============================================================-->
+{% if order is not None %}
+  <div class="modal fade in" id="myModal" role="dialog">
+    <div class="modal-dialog  modal-lg">
+
+      <!-- Modal content-->
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="page-content container">
+                    <div class="page-header text-blue-d2">
+                        <h1 class="page-title text-secondary-d1">
+                            ID: {{order.id}}
+                        </h1>
+                        <div class="page-tools">
+                            <div class="action-buttons">
+                                <button class="btn btn-success mx-1px text-95" color="success" data-title="PDF" onclick="genPDF()">
+                                    <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
+                                    Print
+                                </button>
+<!--                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bill">
+                    <div class="container px-0 pt-2">
+                        <div class="row mt-4">
+                            <div class="col-12 col-lg-10 offset-lg-1">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="text-center text-150">
+
+                                            <span style="font-size: xx-large; font-weight:700; " class="text-default-d3"> INVOICE </span>
+                                        </div>
+                                        <div class="my-2 text-center "><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Time: {{ order.time }}</span></div>
+                                    </div>
+                                </div>
+
+                                <hr class="row brc-default-l1 mx-n1 mb-4" />
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div>
+                                            <span class="text-sm text-grey-m2 align-middle">Company name:</span>
+                                            <span class="text-600 text-110 text-blue align-middle"> PhungHTK BoEC</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm text-grey-m2 align-middle">TaxID:</span>
+                                            <span class="text-600 text-110 text-blue align-middle"> 090909999</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm text-grey-m2 align-middle">Address: </span>
+                                            <span class="text-600 text-110 text-blue align-middle">PTIT</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm text-grey-m2 align-middle">Phone: </span>
+                                            <span class="text-600 text-110 text-blue align-middle"> 091269446</span>
+                                        </div>
+                                       <div>
+                                            <span class="text-sm text-grey-m2 align-middle">Email: </span>
+                                            <span class="text-600 text-110 text-blue align-middle"> boec@phunghtk.com </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6">
+
+<!--                                        <div>-->
+<!--                                            <span class="text-sm text-grey-m2 align-middle">-->
+<!--                                              Customer: </span>-->
+<!--                                            <span class="text-600 text-110 text-blue align-middle"> {{ order.userid.fullname_set.all.0.first }} {{ order.userid.fullname_set.all.0.last }} </span>-->
+<!--                                        </div>-->
+<!--                                        <div>-->
+<!--                                            <span class="text-sm text-grey-m2 align-middle">Phone: </span>-->
+<!--                                            <span class="text-600 text-110 text-blue align-middle"> {{ order.userid.phone }} </span>-->
+<!--                                        </div>-->
+<!--                                        <div>-->
+<!--                                            <span class="text-sm text-grey-m2 align-middle">Address:-->
+
+<!--                                            </span>-->
+<!--                                             <span class="text-600 text-110 text-blue align-middle">-->
+<!--                                                 {{ order.userid.address_set.all.0.homenum }} - -->
+<!--                                              {{ order.userid.address_set.all.0.street }} - -->
+<!--                                              {{ order.userid.address_set.all.0.district }} - -->
+<!--                                              {{ order.userid.address_set.all.0.city }} - -->
+<!--                                              {{ order.userid.address_set.all.0.country }}-->
+<!--                                             </span>-->
+<!--                                        </div>-->
+                                        <div>
+                                            <span class="text-sm text-grey-m2 align-middle">Payment: </span>
+                                            <span class="text-600 text-110 text-blue align-middle"> {{ order.paymentid.type }} </span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="mt-4">
+                                    <div class="row text-600 bgc-default-tp1 py-25" style="background-color: coral;padding: 2%;">
+                                        <div class="d-none d-sm-block col-1">#</div>
+                                        <div class="col-9 col-sm-4">Products</div>
+                                        <div class="d-none d-sm-block col-4 col-sm-2">Quantity</div>
+                                        <div class="d-none text-center d-sm-block col-sm-2">Price</div>
+                                        <div class="col-3 text-center">Amount</div>
+                                    </div>
+
+                                    <div class="text-95 text-secondary-d3">
+                                        <div class="row mb-2 mb-sm-0 py-25">
+                                          {% for ci in order.cartid.cartitem_set.all %}
+                                           <div class="d-none d-sm-block col-1">{{ forloop.counter }}</div>
+                                            <div class="col-9 col-sm-4">{{ ci.itemid.productid.name }}</div>
+                                            <div class="d-none d-sm-block text-center  col-4 col-sm-2">{{ ci.quantity }}</div>
+                                            <div class="d-none d-sm-block text-center col-sm-2">{{ ci.cost }}</div>
+                                            <div class="d-none d-sm-block text-center col-3">{{ ci.quantity|mul:ci.cost }}</div>
+
+                                            {% endfor %}
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row border-b-2 brc-default-l2"></div>
+
+
+                                    <div class="row mt-3">
+                                        <div class="col-12 col-sm-5 text-grey-d2 text-95 mt-2 mt-lg-0">
+                                                Shipment: {{order.shipmentid.type}}
+                                        </div>
+
+                                            <div class="col-12 col-sm-7 text-grey text-90 order-first order-sm-last">
+                                            <div class="row my-2">
+                                                <div class="col-5 text-left">
+                                                    Fee ship:
+                                                </div>
+                                                <div class="col-7 text-right">
+                                                    <span class="text-120 text-secondary-d1">{{order.shipmentid.price}} VNĐ</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row my-2">
+                                                <div class="col-5 text-left">
+
+                                                </div>
+                                                <div class="col-7 text-right">
+                                                    <span class="text-120 text-secondary-d1"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row my-2 align-items-center bgc-primary-l3">
+                                                <div class="col-5 text-120 text-left text-danger">
+                                                    TOTAL :
+                                                </div>
+                                                <div class="col-7 text-right">
+                                                    <span class="text-150 text-success-d3 opacity-2 font-weight-bold text-danger">{{order.shipmentid.price|add:order.num}} VNĐ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div>
+                                        <span class="text-secondary-d1 text-105"><i>Thank you for your business!</i></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                        <div class="d-flex justify-content-center">
+                            <form action="./manageorder/orderchecked" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="orderid" value="{{order.id}}" class="btn btn-success text-center" >Confirm</button>
+                            </form>
+                            <form action="./manageorder/ordercanceled" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="orderid" value="{{order.id}}" class="btn btn-secondary text-center" >Cancel</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        </div>
+      </div>
+
+    </div>
+    {% endif %}
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Manage Orders</h4>
+                    </div>
+                </div>
+            </div>
+           <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr class="row-listorder">
+                                          <th style="width: 3%">#</th>
+                                          <th style="width: 15%">Time</th>
+                                          <th class="text-center" style="width: 20%">Products</th>
+                                          <th class="text-center" style="width: 20%">Total</th>
+                                            <th class="text-center" style="width: 15%">Shipment</th>
+                                            <th style="width: 10%">State</th>
+                                            <th class="text-center" style="width: 10%"> Action </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for o in orders %}
+                                          {% for ci in o.cartid.cartitem_set.all %}
+                                            <tr >
+                                                {% if forloop.counter == 1 %}
+                                              <th style="width: 3%" rowspan="{{ o.cartid.cartitem_set.count }}">{{ o.id }}</th>
+                                              <td style="width: 15%" rowspan="{{ o.cartid.cartitem_set.count }}">{{ o.time }}</td>
+                                                {% endif %}
+                                              <td style="width: 20%">- {{ ci.itemid.productid.name }}</td>
+
+                                                {% if forloop.counter == 1 %}
+                                                <td class="text-center" rowspan="{{ o.cartid.cartitem_set.count }}" style="width: 20%">{{ o.num }}</td>
+                                                <td class="text-center" rowspan="{{ o.cartid.cartitem_set.count }}" style="width: 15%">{{ o.shipmentid.type }}</td>
+                                                <td class="text-center" rowspan="{{ o.cartid.cartitem_set.count }}" style="width: 10%; color: #ff6235;">{{ o.state }}</td>
+                                                <td class="text-center" rowspan="{{ o.cartid.cartitem_set.count }}" style="width: 10%">
+                                                    <a class="btn btn-success" href="./manageorder?orderid={{ o.id }}" >View detail</a>
+                                                </td>
+                                                {% endif %}
+                                            </tr>
+                                          {% endfor %}
+                                      {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center"> 2021 © Ha Thi Kim Phung <a
+                    href="https://www.facebook.com/htkphung99/">facebook</a>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+</div>
+
+    <script src="{% static 'employee/plugins/bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'employee/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'employee/js/app-style-switcher.js' %}"></script>
+    <script src="{% static 'employee/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'employee/js/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'employee/js/sidebarmenu.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'employee/js/custom.js' %}"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="{% static 'employee/plugins/bower_components/chartist/dist/chartist.min.js' %}"></script>
+    <script src="{% static 'employee/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js' %}"></script>
+    <script src="{% static 'employee/js/pages/dashboards/dashboard1.js' %}"></script>
+
+
+{% if order is not None %}
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#myModal').modal('show');
+        });
+    </script>
+    {% endif %}
+
+
+    <script type="text/javascript">
+        window.jsPDF = window.jspdf.jsPDF
+        function genPDF () {
+<!--            const pdf = new jsPDF()-->
+<!--            pdf.html(document.getElementById("bill"), {-->
+<!--              callback: function(pdf) {-->
+<!--                pdf.save('test.pdf');-->
+<!--              }-->
+<!--            })-->
+
+            html2canvas(document.getElementById("bill"), {
+                onrendered: function(canvas) {
+                    const imgData = canvas.toDataURL('image/png', 1.0)
+                    const doc = new jsPDF('p', 'px', 'a4')
+                    const pageWidth = doc.internal.pageSize.getWidth();
+                    const pageHeight = doc.internal.pageSize.getHeight();
+
+                    const widthRatio = pageWidth / canvas.width;
+                    const heightRatio = pageHeight / canvas.height;
+                    const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+
+                    const canvasWidth = canvas.width * ratio;
+                    const canvasHeight = canvas.height * ratio;
+
+                    const marginX = (pageWidth - canvasWidth) / 2;
+                    const marginY = (pageHeight - canvasHeight) / 2;
+                    doc.addImage(imgData, 'JPEG', marginX, 10, canvasWidth, canvasHeight);
+                    doc.save('hoadon.pdf')
+                }
+            })
+        }
+    </script>
+
+
+    <script language = "text/Javascript">
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+</body>
+
+</html>

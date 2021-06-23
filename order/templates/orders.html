@@ -1,0 +1,112 @@
+{% include "header.html" %}
+{% load static %}
+{% load mathfilters %}
+
+    {% if cartitem is not None %}
+    <div class="modal fade in" id="myModal" role="dialog">
+        <div class="modal-dialog  modal-md  modal-dialog-centered">
+          <div class="modal-content">
+            <form action="/order/" method="post">
+                {% csrf_token %}
+            <div class="modal-body">
+                <input name="cartitemid" value="{{ cartitem.id }}" hidden>
+                <p>Feedback for product: {{ cartitem.itemid.productid.name }} | ORDER-00{{ cartitem.cartid.order_set.all.0.id }}</p>
+                <hr>
+                <div class="form-group">
+                    <label>Star</label>
+                    <div style="display: flex;">
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea class="form-control" name="content" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button type="button" style="margin: 0px" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="process" value="feedback" style="margin: 0px" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="single-product-area">
+            <h2 style="text-align: center; color: #5a88ca; font-weight:800;">ORDERED VIEW</h2>
+            <br>
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="white-box">
+                        <div class="table-responsive">
+                            <table class="table text-nowrap">
+                                <thead>
+                                    <tr class="row-listorder">
+                                        <th>#</th>
+                                        <th>Time</th>
+                                        <th>State</th>
+                                        <th class="text-center">Total</th>
+                                        <th class="text-center">Shipment</th>
+                                        <th class="text-center">Payment</th>
+
+                                        <th colspan="2" class="text-center">Products</th>
+                                        <th colspan="2" class="text-center"> Feedback </th>
+                                        <th class="text-center"> Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for o in orders %}
+                                    {% for ci in o.cartid.cartitem_set.all %}
+                                    <tr >
+                                        {% if forloop.counter == 1 %}
+                                        <td rowspan="{{ o.cartid.cartitem_set.count }}">{{ o.id }}</td>
+                                        <td rowspan="{{ o.cartid.cartitem_set.count }}">{{ o.time }}</td>
+                                        <td class="text-center" rowspan="{{ o.cartid.cartitem_set.count }}" style="color: #ff6235;">{{ o.state }}</td>
+                                        <td class="text-center" rowspan="{{ o.cartid.cartitem_set.count }}" >{{ o.num }}</td>
+                                        <td class="text-center" rowspan="{{ o.cartid.cartitem_set.count }}" >{{ o.shipmentid.type }}</td>
+                                        <td class="text-center" rowspan="{{ o.cartid.cartitem_set.count }}" >{{ o.paymentid.type }}</td>
+                                        {% endif %}
+                                        <td><img style="height: 70px" src="{{ ci.itemid.productid.img }}"></td>
+                                        <td>- {{ ci.itemid.productid.name }}</td>
+                                        {% if ci.feedback_set.all.count > 0 %}
+                                        <td>{{ ci.feedback_set.all.0.content }}</td>
+                                        <td>{{ ci.feedback_set.all.0.star }} ★</td>
+                                        <td></td>
+                                        {% else %}
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center" >
+                                            <a class="btn btn-success" href="/order?feedback={{ ci.id }}" >Feedback</a>
+                                        </td>
+                                        {% endif %}
+
+                                    </tr>
+                                    {% endfor %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% include "footer.html" %}
